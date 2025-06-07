@@ -1,30 +1,96 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import axios from "axios";
 import "./register.scss";
 
 const Register = () => {
+  const [formData, setFormData] = useState({
+    username: "",
+    password: "",
+    confirmPassword: "",
+  });
+
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
+
+  const handleChange = (e) => {
+    setFormData((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError("");
+
+    const { username, password, confirmPassword } = formData;
+
+    if (!username || !password || !confirmPassword) {
+      setError("All fields are required");
+      return;
+    }
+
+    if (password !== confirmPassword) {
+      setError("Passwords do not match");
+      return;
+    }
+
+    try {
+      const response = await axios.post("http://localhost:8080/api/v1/player/save", {
+        username,
+        password,
+      });
+
+      if (response.data.status === "00") {
+        alert("Registration successful!");
+        navigate("/login");
+      } else {
+        setError(response.data.message || "Registration failed");
+      }
+    } catch (err) {
+      console.error(err);
+      setError("An error occurred during registration");
+    }
+  };
+
   return (
     <div className="register">
       <div className="card">
         <div className="left">
-          <h1>Lama Social.</h1>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero cum,
-            alias totam numquam ipsa exercitationem dignissimos, error nam,
-            consequatur.
-          </p>
-          <span>Do you have an account?</span>
+          <h1>You already have an account?</h1>
+          <p>good...</p>
+          <span></span>
           <Link to="/login">
             <button>Login</button>
           </Link>
         </div>
         <div className="right">
           <h1>Register</h1>
-          <form>
-            <input type="text" placeholder="Username" />
-            <input type="email" placeholder="Email" />
-            <input type="password" placeholder="Password" />
-            <input type="text" placeholder="Name" />
-            <button>Register</button>
+          <form onSubmit={handleSubmit}>
+            <input
+              type="text"
+              name="username"
+              placeholder="Username"
+              value={formData.username}
+              onChange={handleChange}
+            />
+            <input
+              type="password"
+              name="password"
+              placeholder="Password"
+              value={formData.password}
+              onChange={handleChange}
+            />
+            <input
+              type="password"
+              name="confirmPassword"
+              placeholder="Confirm Password"
+              value={formData.confirmPassword}
+              onChange={handleChange}
+            />
+            {error && <p className="error">{error}</p>}
+            <button type="submit">Register</button>
           </form>
         </div>
       </div>

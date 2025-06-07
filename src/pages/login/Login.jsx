@@ -52,9 +52,9 @@ const Login = () => {
       <ToastContainer />
       <div className="card">
         <div className="left">
-          <h1>Hello World</h1>
-          <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
-          <span>You don't have an account?</span>
+          <h1>Are you new here?</h1>
+          <p>create an account, sell, buy and steal coins from your friends</p>
+          <span>What are you waiting for</span>
           <Link to="/register">
             <button>Register</button>
           </Link>

@@ -1,6 +1,25 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: 'Press Start 2P', cursive;
+  overflow: hidden; /* prevent scroll */
+}
+
 .login {
   height: 100vh;
-  background-color: rgb(193, 190, 255);
+  background-color: gold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+
+.login {
+  height: 100vh;
+  background-color: gold;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -20,7 +39,7 @@
     .left {
       flex: 1;
       background: linear-gradient(rgba(39, 11, 96, 0.5), rgba(39, 11, 96, 0.5)),
-        url("https://images.pexels.com/photos/3228727/pexels-photo-3228727.jpeg?auto=compress&cs=tinysrgb&w=1600") center;
+        url("https://res.cloudinary.com/datnaqyl0/image/upload/v1749126975/passonApp/yldwggkdjxwidfecqim4.png") center;
       background-size: cover;
       padding: 70px;
       display: flex;
@@ -32,6 +51,10 @@
       h1 {
         font-size: 40px;
         line-height: 45px;
+        color: white;
+      }
+      p{
+        line-height: 20px;
       }
 
       span {
@@ -64,9 +87,12 @@
       align-items: center;
 
       h1 {
-        color: #555;
-        font-size: 30px;
+        font-family: 'Orbitron', sans-serif;
+        font-size: 40px;
+        line-height: 45px;
+        color: rgb(0, 0, 0);
       }
+
 
       form {
         width: 100%;
@@ -83,18 +109,30 @@
 
         button {
           width: 100%;
-          padding: 10px;
-          border: none;
-          background-color: #938eef;
+          padding: 12px 20px;
+          border: 2px solid #ffffff;
+          background-color: rgb(82, 73, 27);
           color: white;
-          font-weight: bold;
+          font-family: 'Press Start 2P', cursive;
+          font-size: 12px;
+          text-transform: uppercase;
           cursor: pointer;
-          transition: 0.3s;
-
-          &:hover {
-            background-color: #7a6ae0;
-          }
+          transition: background-color 0.2s, transform 0.1s;
+          outline: none;
+          box-shadow: none;
+          border-radius: 0;
+          /* sharp corners */
+          letter-spacing: 1px;
         }
+
+        button:hover {
+          background-color: rgb(171, 150, 27);
+          transform: scale(1.02);
+          background-color: rgb(190, 168, 39);
+          transform: scale(1.02);
+          box-shadow: 0 0 0 3px #fff, 0 0 0 5px goldenrod;
+        }
+
       }
     }
 
@@ -118,6 +156,7 @@
 
         form {
           width: 100%;
+
           button {
             width: 100%;
           }

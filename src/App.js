@@ -1,15 +1,15 @@
-
+// App.jsx
+import ProtectedRoute from './component/ProtectedRoute';
 import Home from './pages/home/Home';
 import Login from './pages/login/Login';
 import Register from './pages/register/Register';
+import Room from './pages/room/Room';
 
 import {
   createBrowserRouter,
   RouterProvider,
-  Route,
-  Outlet,
-  Navigate,
 } from "react-router-dom";
+
 
 const router = createBrowserRouter([
   {
@@ -21,16 +21,26 @@ const router = createBrowserRouter([
     element: <Register />
   },
   {
+    path: "/room",
+    element: (
+      <ProtectedRoute>
+        <Room />
+      </ProtectedRoute>
+    )
+  },
+  {
     path: "/",
-    element: <Home />
+    element: (
+      <ProtectedRoute>
+        <Home />
+      </ProtectedRoute>
+    )
   }
-])
+]);
 
 function App() {
   return (
-    <div>
-      <RouterProvider router={router} />
-    </div>
+    <RouterProvider router={router} />
   );
 }
 
