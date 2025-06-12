@@ -92,8 +92,8 @@ const Home = () => {
 
       <div className="right-panel">
         <div className="buttoncase">
-          <button className="game-button join">Play: Join a Room</button>
-          <button className="game-button create">Create a Room</button>
+          <Link to="/roomlist"><button className="game-button join">Play: Join a Room</button></Link>
+          <Link><button className="game-button create">Create a Room</button></Link>
         </div>
       </div>
     </div>

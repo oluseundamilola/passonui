@@ -105,7 +105,7 @@ const Profile = () => {
           <div className="banker-section">
             <div className="banker-image-container">
                  <div className="speech-bubble">
-                {playerData.newUser ? "Hallo new player!" : "Buy/Sell coins"}
+                {playerData.newUser ? "Hallo new player! I am the banker" : "Buy/Sell coins"}
               </div>
               <img 
                 src="https://res.cloudinary.com/datnaqyl0/image/upload/v1749125498/passonApp/gu6qx4bxslnrvnjpuj3z.png" 

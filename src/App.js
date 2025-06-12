@@ -10,6 +10,7 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
+import RoomList from './pages/roomList/RoomList';
 
 
 const router = createBrowserRouter([
@@ -42,6 +43,14 @@ const router = createBrowserRouter([
     element: (
       <ProtectedRoute>
         <Profile />
+      </ProtectedRoute>
+    )
+  },
+  {
+    path: "/roomlist",
+    element: (
+      <ProtectedRoute>
+        <RoomList />
       </ProtectedRoute>
     )
   }
