@@ -11,6 +11,7 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import RoomList from './pages/roomList/RoomList';
+import CreateRoom from './pages/createRoom/CreateRoom';
 
 
 const router = createBrowserRouter([
@@ -23,7 +24,7 @@ const router = createBrowserRouter([
     element: <Register />
   },
   {
-    path: "/room",
+    path: "/room/:roomID",
     element: (
       <ProtectedRoute>
         <Room />
@@ -51,6 +52,14 @@ const router = createBrowserRouter([
     element: (
       <ProtectedRoute>
         <RoomList />
+      </ProtectedRoute>
+    )
+  },
+  {
+    path: "/room/create",
+    element: (
+      <ProtectedRoute>
+        <CreateRoom />
       </ProtectedRoute>
     )
   }

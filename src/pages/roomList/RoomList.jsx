@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./roomlist.scss";
+import { useNavigate } from "react-router-dom";
 
 const RoomList = () => {
   const [search, setSearch] = useState("");
@@ -8,6 +9,7 @@ const RoomList = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [selectedRoom, setSelectedRoom] = useState(null); // For modal
+  const navigate = useNavigate();
 
   const token = localStorage.getItem("token");
 
@@ -46,7 +48,28 @@ const RoomList = () => {
     setSelectedRoom(room);
   };
 
-  const handleConfirmJoin = () => {
+  const handleConfirmJoin = async () => {
+    const token = localStorage.getItem("token");
+    try {
+        const response = await axios.post(
+          `http://localhost:8080/api/v1/room/join/${selectedRoom.id}`,
+          {},
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        if (response.data.status === "00") {
+          navigate(`/room/${selectedRoom.id}`);
+        } else {
+          setError("Failed to fetch room list.");
+        }
+      } catch (err) {
+        console.error("Error joining rooms:", err);
+        setError("Error connecting to server.");
+      }
+
     // You can add POST join logic here
     console.log("Joining room:", selectedRoom.roomID);
     setSelectedRoom(null);

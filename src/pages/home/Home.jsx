@@ -93,7 +93,7 @@ const Home = () => {
       <div className="right-panel">
         <div className="buttoncase">
           <Link to="/roomlist"><button className="game-button join">Play: Join a Room</button></Link>
-          <Link><button className="game-button create">Create a Room</button></Link>
+          <Link to="/room/create"><button className="game-button create">Create a Room</button></Link>
         </div>
       </div>
     </div>
