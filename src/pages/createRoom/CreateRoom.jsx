@@ -4,6 +4,7 @@ import "./createRoom.scss";
 import { useNavigate } from 'react-router-dom';
 
 const CreateRoom = () => {
+  const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
   const [roomName, setRoomName] = useState("");
   const [roomSize, setRoomSize] = useState("2");
   const [coins, setCoins] = useState("");
@@ -24,7 +25,7 @@ const CreateRoom = () => {
     setLoading(true);
     try {
       const response = await axios.post(
-        "http://localhost:8080/api/v1/room/create/new",
+        API_BASE_URL+"/room/create/new",
         {
           roomName,
           roomSize,

@@ -6,6 +6,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 
 const Home = () => {
+  const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
   const [playerData, setPlayerData] = useState(null);
   const [topPlayers, setTopPlayers] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -14,7 +15,7 @@ const Home = () => {
     const fetchPlayerData = async () => {
       try {
         const token = localStorage.getItem("token");
-        const response = await axios.get('http://localhost:8080/api/v1/player/info', {
+        const response = await axios.get(API_BASE_URL+'/player/info', {
           headers: {
              Authorization: `Bearer ${token}`,
           }
@@ -35,7 +36,7 @@ const Home = () => {
     const token = localStorage.getItem("token");
     
     axios
-      .get("http://localhost:8080/api/v1/player/top", {
+      .get(API_BASE_URL+"/player/top", {
         headers: {
             Authorization: `Bearer ${token}`,
           },

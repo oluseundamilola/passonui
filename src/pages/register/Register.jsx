@@ -3,7 +3,10 @@ import { useState } from "react";
 import axios from "axios";
 import "./register.scss";
 
+ 
+
 const Register = () => {
+  const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
   const [formData, setFormData] = useState({
     username: "",
     password: "",
@@ -37,7 +40,7 @@ const Register = () => {
     }
 
     try {
-      const response = await axios.post("http://localhost:8080/api/v1/player/save", {
+      const response = await axios.post(API_BASE_URL+"/player/save", {
         username,
         password,
       });

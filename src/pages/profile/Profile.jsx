@@ -3,6 +3,7 @@ import "./profile.scss";
 import axios from 'axios';
 
 const Profile = () => {
+  const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
   const [playerData, setPlayerData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -11,7 +12,7 @@ const Profile = () => {
     const fetchPlayerData = async () => {
       try {
         const token = localStorage.getItem("token");
-        const response = await axios.get('http://localhost:8080/api/v1/player/info', {
+        const response = await axios.get(API_BASE_URL+'/player/info', {
           headers: {
              Authorization: `Bearer ${token}`,
           }

@@ -4,6 +4,7 @@ import "./roomlist.scss";
 import { useNavigate } from "react-router-dom";
 
 const RoomList = () => {
+  const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
   const [search, setSearch] = useState("");
   const [rooms, setRooms] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -17,7 +18,7 @@ const RoomList = () => {
     const fetchRooms = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:8080/api/v1/room/list/rooms",
+          API_BASE_URL+"/room/list/rooms",
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -52,7 +53,7 @@ const RoomList = () => {
     const token = localStorage.getItem("token");
     try {
         const response = await axios.post(
-          `http://localhost:8080/api/v1/room/join/${selectedRoom.id}`,
+          `${API_BASE_URL}/room/join/${selectedRoom.id}`,
           {},
           {
             headers: {

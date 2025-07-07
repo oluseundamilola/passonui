@@ -6,6 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import "./login.scss";
 
 const Login = () => {
+  const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
   const [inputs, setInputs] = useState({
     username: "",
     password: ""
@@ -24,7 +25,7 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      const res = await axios.post("http://localhost:8080/api/v1/player/login", inputs);
+      const res = await axios.post(API_BASE_URL+"/player/login", inputs);
 
       if (res.data.status === "00") {
         localStorage.setItem("token", res.data.data); // Save token
